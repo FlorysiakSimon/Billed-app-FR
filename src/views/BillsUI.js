@@ -20,8 +20,14 @@ const row = (bill) => {
   }
 
 const rows = (data) => {
-    return (data && data.length) ? data.sort((a, b) => b.date > a.date ? 1 : -1).map(bill => row(bill)).join("") : ""
-}
+  const dataArray = data && data.length 
+    ? data.sort((a, b) => new Date(b.date) - new Date(a.date))
+    : "";
+  return data && data.length 
+    ? dataArray.map((bill) => row(bill)).join("") 
+    : "";
+};
+
 export default ({ data: bills, loading, error }) => {
   
   const modal = () => (`

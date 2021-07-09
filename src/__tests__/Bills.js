@@ -18,5 +18,19 @@ describe("Given I am connected as an employee", () => {
       expect(dates).toEqual(datesSorted)
     })
   })
+  describe('When I am on bills page but it is loading', () => {
+    test('Then, Loading page should be rendered', () => {
+      const html = BillsUI({loading: true})
+      document.body.innerHTML = html
+      expect(screen.getAllByText('Loading...')).toBeTruthy()
+    })
+  })
+  describe('When I am on bills page but back-end send an error message', () => {
+    test('Then, Error page should be rendered', () => {
+      const html = BillsUI({error: 'some error message'})
+      document.body.innerHTML = html
+      expect(screen.getAllByText('Erreur')).toBeTruthy()
+    })
+  })
 })
 
