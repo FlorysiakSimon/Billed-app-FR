@@ -18,6 +18,7 @@ describe("Given I am connected as an employee", () => {
       expect(dates).toEqual(datesSorted)
     })
   })
+  
   describe('When I am on bills page but it is loading', () => {
     test('Then, Loading page should be rendered', () => {
       const html = BillsUI({loading: true})
@@ -32,5 +33,6 @@ describe("Given I am connected as an employee", () => {
       expect(screen.getAllByText('Erreur')).toBeTruthy()
     })
   })
+ 
 })
 

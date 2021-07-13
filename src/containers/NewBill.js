@@ -19,15 +19,22 @@ export default class NewBill {
     const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
     const filePath = e.target.value.split(/\\/g)
     const fileName = filePath[filePath.length-1]
-    this.firestore
-      .storage
-      .ref(`justificatifs/${fileName}`)
-      .put(file)
-      .then(snapshot => snapshot.ref.getDownloadURL())
-      .then(url => {
-        this.fileUrl = url
-        this.fileName = fileName
-      })
+    const fileExtension = fileName.split(".")[fileName.split(".").length - 1];
+    if (["png", "jpeg", "jpg"].includes(fileExtension)) {
+      this.firestore.storage
+        .ref(`justificatifs/${fileName}`)
+        .put(file)
+        .then((snapshot) => snapshot.ref.getDownloadURL())
+        .then((url) => {
+          this.fileUrl = url;
+          this.fileName = fileName;
+        })
+        .catch(() => this.inputFileReset());
+    }else{
+      alert('Veuillez utilisez un justificatif au format: jpg, jpeg ou png');
+      e.target.value = "";
+    }
+    
   }
   handleSubmit = e => {
     e.preventDefault()
