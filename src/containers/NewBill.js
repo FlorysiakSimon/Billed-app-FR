@@ -29,7 +29,6 @@ export default class NewBill {
           this.fileUrl = url;
           this.fileName = fileName;
         })
-        .catch(() => this.inputFileReset());
     }else{
       alert('Veuillez utilisez un justificatif au format: jpg, jpeg ou png');
       e.target.value = "";
@@ -58,6 +57,7 @@ export default class NewBill {
   }
 
   // not need to cover this function by tests
+  /* istanbul ignore next */
   createBill = (bill) => {
     if (this.firestore) {
       this.firestore

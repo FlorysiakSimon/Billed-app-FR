@@ -144,9 +144,9 @@ export default class {
         .html("")
       this.counter ++
     }
-
+    console.log(`#status-bills-container${index}`)
     bills.forEach(bill => {
-      $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
+      $(`#status-bills-container${index} #open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
     })
 
     return bills
@@ -173,7 +173,7 @@ export default class {
     }
   }
     
-  // not need to cover this function by tests
+  // not need to cover this function by tests  
   updateBill = (bill) => {
     if (this.firestore) {
     return this.firestore

@@ -1,4 +1,5 @@
 export const formatDate = (dateStr) => {
+  if (Date.parse(dateStr) === NaN || dateStr === "") return "1 Jan. 01" // fix format.js invalid time value error
   const date = new Date(dateStr)
   const ye = new Intl.DateTimeFormat('fr', { year: 'numeric' }).format(date)
   const mo = new Intl.DateTimeFormat('fr', { month: 'short' }).format(date)
